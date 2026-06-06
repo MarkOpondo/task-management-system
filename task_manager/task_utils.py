@@ -14,6 +14,11 @@ def add_task(title, description, due_date):
 
 
 def mark_task_as_complete(index, tasks=tasks):
+    for task in tasks:
+        if index == task["title"]:
+            task["completed"] = True
+        else:
+            print("Task does not exist")
     print("Task marked as complete")
 
 def view_pending_tasks(tasks=tasks):
