@@ -17,12 +17,19 @@ def mark_task_as_complete(index, tasks=tasks):
     for task in tasks:
         if index == task["title"]:
             task["completed"] = True
+            print("Task marked as complete")
+
         else:
             print("Task does not exist")
-    print("Task marked as complete")
 
 def view_pending_tasks(tasks=tasks):
-    print("Pending tasks")
+    for task in tasks:
+        if task["completed"] == False:
+            print("Pending.... ")
+            print("-"*30)
+            print(task)
+        else:
+            print("No pending tasks")
 
 def calculate_progress(tasks = tasks):
     print("progress")
