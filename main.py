@@ -1,5 +1,5 @@
 from task_manager.validation import validate_task_title, validate_task_description, validate_due_date
-from task_manager.task_utils import add_task, tasks, mark_task_as_complete
+from task_manager.task_utils import add_task, tasks, mark_task_as_complete, view_pending_tasks
 
 def main():
     while True:
@@ -35,7 +35,13 @@ def main():
                 mark_task_as_complete(title, tasks)
             except ValueError as e:
                 print("Task does not exist", str(e))
-        
+
+        elif choice == "3":
+            try:
+                view_pending_tasks(tasks)
+            except ValueError as e:
+                print("No pending tasks")
+
         elif choice == "5":
             print("Exiting the programme")
             break
