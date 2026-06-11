@@ -3,7 +3,7 @@ from task_manager.task_utils import add_task, tasks, mark_task_as_complete, view
 
 def main():
     while True:
-        print(tasks)
+        # print(tasks)
         print("Task Management System")
         print("1. Add Task")
         print("2. Mark Task as Complete")
