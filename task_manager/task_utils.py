@@ -17,7 +17,7 @@ def mark_task_as_complete(index, tasks=tasks):
     for task in tasks:
         if index == task["title"]:
             task["completed"] = True
-            print("Task marked as complete")
+            print("Task marked as complete!")
 
         else:
             print("Task does not exist")
