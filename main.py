@@ -1,5 +1,66 @@
-from validation import validate_task_title, validate_task_description, validate_due_date
-from task_utils import add_task, tasks, mark_task_as_complete, view_pending_tasks
+# from validation import validate_task_title, validate_task_description, validate_due_date
+# from task_utils import add_task, tasks, mark_task_as_complete, view_pending_tasks
+from datetime import datetime
+# Validation functions import
+
+tasks = []
+
+def add_task(title, description, due_date):
+    task = {
+        "title" : title,
+        "description" : description,
+        "due_date" : due_date,
+        "completed" : False
+    }
+    tasks.append(task)
+
+
+def mark_task_as_complete(index, tasks=tasks):
+    id = int(index) - 1
+    if 0 <= id < len(tasks):
+        tasks[id]["completed"] = True
+        print("Task marked as complete!")
+
+    else:
+        print("Task does not exist")
+
+def view_pending_tasks(tasks=tasks):
+    for task in tasks:
+        if task["completed"] == False:
+            print("Pending.... ")
+            print("-"*30)
+            print(task)
+        else:
+            print("No pending tasks")
+
+def calculate_progress(tasks = tasks):
+    if len(tasks) > 0:
+        completed_tasks = sum(1 for t in tasks if t["completed"])
+        all_tasks = len(tasks)
+        progress = (completed_tasks / all_tasks) * 100
+        print(progress)
+    else: 
+        print("No tasks available")
+
+
+def validate_task_title(title):
+    if not title:
+        raise ValueError("Title cannot be empty")
+    
+
+def validate_task_description(description):
+    if not description:
+        raise ValueError("Description cannot be empty")
+
+def validate_due_date(due_date):
+    if not due_date:
+        raise ValueError("Due date cannot be empty")
+    
+    try:
+        datetime.strptime(due_date, "%Y-%m-%d")
+    except ValueError as e:
+        raise e("Invalid date format YYYY-MM-DD")
+
 
 def main():
     while True:
