@@ -32,4 +32,10 @@ def view_pending_tasks(tasks=tasks):
             print("No pending tasks")
 
 def calculate_progress(tasks = tasks):
-    print("progress")
+    if tasks:
+        completed_tasks = sum(1 for t in tasks if t["completed"])
+        all_tasks = len(tasks)
+        progress = (completed_tasks / all_tasks) * 100
+        print(progress)
+    else: 
+        print("No tasks available")
