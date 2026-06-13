@@ -25,13 +25,14 @@ def mark_task_as_complete(index, tasks=tasks):
         print("Task does not exist")
 
 def view_pending_tasks(tasks=tasks):
-    for task in tasks:
-        if task["completed"] == False:
+    pending = (for t in tasks if not t["completed"])
+    if pending:
+        for task in pending:
             print("Pending.... ")
             print("-"*30)
             print(task)
-        else:
-            print("No pending tasks")
+    else:
+        print("No pending tasks")
 
 def calculate_progress(tasks = tasks):
     if len(tasks) > 0:
@@ -58,8 +59,8 @@ def validate_due_date(due_date):
     
     try:
         datetime.strptime(due_date, "%Y-%m-%d")
-    except ValueError as e:
-        raise e("Invalid date format YYYY-MM-DD")
+    except:
+        raise ValueError("Invalid date format YYYY-MM-DD")
 
 
 def main():
@@ -91,9 +92,9 @@ def main():
                 print("Input Error", str(e))
 
         elif choice == "2":
-            title = input("Enter the title of completed task: ")
+            index = input("Enter the task number: ")
             try: 
-                mark_task_as_complete(title, tasks)
+                mark_task_as_complete(index, tasks)
             except ValueError as e:
                 print("Task does not exist", str(e))
 
@@ -104,10 +105,8 @@ def main():
                 print("No pending tasks")
             
         elif choice == "4":
-            try:
                 calculate_progress(tasks)
-            except:
-                print("No tasks")
+            
 
         elif choice == "5":
             print("Exiting the programme")
