@@ -25,7 +25,7 @@ def mark_task_as_complete(index, tasks=tasks):
         print("Task does not exist")
 
 def view_pending_tasks(tasks=tasks):
-    pending = [for t in tasks if not t["completed"]]
+    pending = [t for t in tasks if not t["completed"]]
     if pending:
         for task in pending:
             print("Pending.... ")
