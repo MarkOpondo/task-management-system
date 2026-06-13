@@ -102,6 +102,12 @@ def main():
                 view_pending_tasks(tasks)
             except ValueError as e:
                 print("No pending tasks")
+            
+        elif choice == "4":
+            try:
+                calculate_progress(tasks)
+            except:
+                print("No tasks")
 
         elif choice == "5":
             print("Exiting the programme")
